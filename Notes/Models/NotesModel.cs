@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,12 +11,14 @@ namespace Notes.Models
 {
     class NotesModel : INotifyPropertyChanged
     {
+        [JsonProperty(PropertyName ="Дата создания")]
         public DateTime CreationDate { get; set; } = DateTime.Now;
         private bool _isDone;
         private string _text;
 
-        
 
+
+        [JsonProperty(PropertyName = "Выполнено ли")]
         public bool isDone
         {
             get { return _isDone; }
@@ -28,7 +32,7 @@ namespace Notes.Models
                 OnPropertyChanged("isDone");
             }
         }
-
+        [JsonProperty(PropertyName = "Текст сообщения")]
         public string Text
         {
             get { return _text; }
